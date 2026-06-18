@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { API_URL } from "../config";
 
 function OrderTable() {
 
@@ -6,8 +7,7 @@ function OrderTable() {
 
   useEffect(() => {
 
-    fetch("http://127.0.0.1:8000/orders")
-      .then((response) => response.json())
+fetch(`${API_URL}/orders`)      .then((response) => response.json())
       .then((data) => setOrders(data))
       .catch((error) => console.error(error));
 

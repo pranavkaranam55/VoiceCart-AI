@@ -1,4 +1,5 @@
 import OrderTable from "../components/OrderTable";
+import { API_URL } from "../config";
 
 function PreviousOrders() {
   return (

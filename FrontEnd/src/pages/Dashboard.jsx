@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import StatsCard from "../components/StatsCard";
+import { API_URL } from "../config";
 
 function Dashboard() {
 
@@ -12,7 +13,7 @@ function Dashboard() {
 
   useEffect(() => {
 
-    fetch("http://127.0.0.1:8000/dashboard")
+fetch(`${API_URL}/dashboard`)
       .then((response) => response.json())
       .then((data) => setStats(data))
       .catch((error) => console.error(error));

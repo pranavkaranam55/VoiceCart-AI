@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { API_URL } from "../config";
 function VoiceConsole() {
 
   const [status, setStatus] = useState("Ready to Listen");
@@ -40,12 +41,12 @@ const startRecording = async () => {
       try {
 
         const response = await fetch(
-          "http://127.0.0.1:8000/process-order",
-          {
-            method: "POST",
-            body: formData
-          }
-        );
+  `${API_URL}/process-order`,
+  {
+    method: "POST",
+    body: formData
+  }
+);
 
         const data = await response.json();
         console.log(data.transcribed_text);

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import AnalyticsCard from "../components/AnalyticsCard";
 import ProductChart from "../components/ProductChart";
+import { API_URL } from "../config";
 
 function Analytics() {
 
@@ -13,8 +14,7 @@ function Analytics() {
 
   useEffect(() => {
 
-    fetch("http://127.0.0.1:8000/analytics")
-      .then((response) => response.json())
+fetch(`${API_URL}/analytics`)      .then((response) => response.json())
       .then((data) => setAnalytics(data))
       .catch((error) => console.error(error));
 

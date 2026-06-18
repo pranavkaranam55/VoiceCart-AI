@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { API_URL } from "../config";
 
 function DemandPrediction() {
 
@@ -6,8 +7,7 @@ function DemandPrediction() {
 
   useEffect(() => {
 
-    fetch("http://127.0.0.1:8000/prediction")
-      .then((response) => response.json())
+fetch(`${API_URL}/prediction`)      .then((response) => response.json())
       .then((data) => setPredictions(data))
       .catch((error) => console.error(error));
 

@@ -1,3 +1,4 @@
+import { API_URL } from "../config";
 function AnalyticsCard({ title, value }) {
     return (
       <div className="analytics-card">

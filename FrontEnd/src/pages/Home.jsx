@@ -2,7 +2,7 @@ import HeroSection from "../components/HeroSection";
 import FeatureCard from "../components/FeatureCard";
 import VoiceRecorder from "../components/VoiceRecorder";
 import Footer from "../components/Footer";
-
+import { API_URL } from "../config";
 function Home() {
   return (
     <div>

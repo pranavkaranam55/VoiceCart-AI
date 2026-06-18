@@ -1,3 +1,4 @@
+import { API_URL } from "../config";
 function FeatureCard({ title, description }) {
     return (
       <div className="feature-card">
