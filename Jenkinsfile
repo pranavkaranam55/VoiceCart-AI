@@ -4,17 +4,11 @@ pipeline {
 
     stages {
 
-        stage('Clone Repository') {
-            steps {
-                git 'https://github.com/pranavkaranam55/VoiceCart-AI.git'
-            }
-        }
-
         stage('Frontend Build') {
             steps {
                 dir('FrontEnd') {
-                    bat 'npm install'
-                    bat 'npm run build'
+                    sh 'npm install'
+                    sh 'npm run build'
                 }
             }
         }
@@ -22,15 +16,16 @@ pipeline {
         stage('Backend Dependencies') {
             steps {
                 dir('BackEnd') {
-                    bat 'pip install -r requirements.txt'
+                    sh 'pip install -r requirements.txt'
                 }
             }
         }
 
         stage('Docker Build') {
             steps {
-                bat 'docker compose build'
+                sh 'docker compose build'
             }
         }
+
     }
 }
