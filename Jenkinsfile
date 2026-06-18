@@ -21,9 +21,10 @@ sh 'pip3 install --break-system-packages -r requirements.txt'                }
         }
 
         stage('Docker Build') {
-            steps {
-                sh 'docker compose build'
-            }
-        }
+    steps {
+        sh 'docker build -t voicecart-backend ./BackEnd'
+        sh 'docker build -t voicecart-frontend ./FrontEnd'
+    }
+}
     }
 }
