@@ -2,6 +2,10 @@ pipeline {
 
     agent any
 
+    environment {
+        PATH = "/var/jenkins_home/.local/bin:${env.PATH}"
+    }
+
     stages {
 
         stage('Frontend Build') {
@@ -16,15 +20,34 @@ pipeline {
         stage('Backend Dependencies') {
             steps {
                 dir('BackEnd') {
-sh 'pip3 install --break-system-packages -r requirements.txt'                }
+                    sh 'pip3 install --break-system-packages -r requirements.txt'
+                }
             }
         }
 
-        stage('Docker Build') {
-    steps {
-        sh 'docker build -t voicecart-backend ./BackEnd'
-        sh 'docker build -t voicecart-frontend ./FrontEnd'
+        stage('Docker Build Backend') {
+            steps {
+                sh 'docker build -t voicecart-backend ./BackEnd'
+            }
+        }
+
+        stage('Docker Build Frontend') {
+            steps {
+                sh 'docker build -t voicecart-frontend ./FrontEnd'
+            }
+        }
+
     }
-}
+
+    post {
+
+        success {
+            echo 'VoiceCart AI CI/CD Pipeline Completed Successfully!'
+        }
+
+        failure {
+            echo 'Pipeline Failed!'
+        }
+
     }
 }
