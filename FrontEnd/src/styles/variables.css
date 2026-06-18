@@ -1,0 +1,24 @@
+:root {
+
+    
+    --bg-main: #F5F7FF;
+    --bg-section: #EEF2FF;
+  
+  
+    --heading-primary: #1E1B4B;
+    --heading-secondary: #312E81;
+  
+    
+    --primary: #6C63FF;
+    --secondary: #00B8D9;
+    --accent: #FF6B6B;
+  
+ 
+    --text-primary: #334155;
+    --text-secondary: #64748B;
+    --label-color: #94A3B8;
+  
+    --card-bg: rgba(255,255,255,0.75);
+    --card-border: rgba(255,255,255,0.4);
+  
+  }
