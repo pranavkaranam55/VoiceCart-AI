@@ -20,8 +20,8 @@ pipeline {
         stage('Backend Dependencies') {
             steps {
                 dir('BackEnd') {
-                    sh 'pip3 install --break-system-packages -r requirements.txt'
-                }
+
+                  sh 'pip3 install --break-system-packages -r requirements-ci.txt'                }
             }
         }
 
