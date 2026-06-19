@@ -49,20 +49,20 @@ const startRecording = async () => {
 );
 
         const data = await response.json();
-        console.log(data.transcribed_text);
-console.log(data.orders);
 
-        setDetectedOrder(data.orders);
+console.log("FULL RESPONSE:", data);
 
-        setStatus("Order Detected");
-        
+setDetectedOrder(data.orders || []);
+
+setStatus("Order Detected");
 
       } catch (error) {
 
-        console.error(error);
-        setStatus("Error Processing Order");
+  console.error("ACTUAL ERROR:", error);
 
-      }
+  setStatus("Error Processing Order");
+
+}
 
     };
 
