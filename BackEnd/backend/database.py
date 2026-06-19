@@ -1,9 +1,11 @@
 import sqlite3
+import os
 from datetime import datetime
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(BASE_DIR, "orders.db")
 
-
-with sqlite3.connect("database/orders.db") as conn:
+with sqlite3.connect(DB_PATH) as conn:
 
     cursor = conn.cursor()
 
@@ -25,7 +27,7 @@ def save_orders(order_list, language):
 
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    with sqlite3.connect("database/orders.db", timeout=10) as conn:
+    with sqlite3.connect(DB_PATH, timeout=10) as conn:
 
         cursor = conn.cursor()
 
@@ -51,7 +53,7 @@ def save_orders(order_list, language):
 
 def get_dashboard_stats():
 
-    with sqlite3.connect("database/orders.db", timeout=10) as conn:
+    with sqlite3.connect(DB_PATH, timeout=10) as conn:
 
         cursor = conn.cursor()
 
@@ -81,7 +83,7 @@ def get_dashboard_stats():
         }
 def get_all_orders():
 
-    with sqlite3.connect("database/orders.db") as conn:
+    with sqlite3.connect(DB_PATH) as conn:
 
         cursor = conn.cursor()
 
@@ -109,7 +111,7 @@ def get_all_orders():
 
 def get_analytics_stats():
 
-    with sqlite3.connect("database/orders.db") as conn:
+    with sqlite3.connect(DB_PATH) as conn:
 
         cursor = conn.cursor()
 
