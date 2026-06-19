@@ -2,6 +2,7 @@ from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from backend.database import get_analytics_stats
 from backend.demand_prediction import predict_demand
+from fastapi.middleware.cors import CORSMiddleware
 from backend.export_reports import (
     export_csv,
     export_excel,
@@ -16,7 +17,9 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[
+        "https://voice-cart-ai.vercel.app"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
