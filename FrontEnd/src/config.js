@@ -1,1 +1,1 @@
-export const API_URL = "https://voicecart-ai-production.up.railway.app";
+export const API_URL = "https://voicecart-ai-production.up.railway.app";    
