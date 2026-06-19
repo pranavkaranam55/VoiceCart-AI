@@ -4,6 +4,7 @@ from deep_translator import GoogleTranslator
 
 model = whisper.load_model("tiny")
 
+
 def convert_number_words(text):
 
     text = text.replace(" to ", " 2 ")
@@ -42,36 +43,42 @@ def convert_number_words(text):
 
 def transcribe_audio(audio_path):
 
-    result = model.transcribe(audio_path)
+    result = model.transcribe(
+        audio_path,
+        fp16=False
+    )
 
-    original_text = result["text"]
+    original_text = result["text"].strip()
+    detected_language = result["language"]
 
-    print("Language:", result["language"])
+    print("Language:", detected_language)
     print("Original Text:", original_text)
 
-    try:
+    translated_text = original_text
 
-        translated_text = GoogleTranslator(
-            source="auto",
-            target="en"
-        ).translate(original_text)
+    if detected_language != "en":
 
-        if translated_text is None:
-            translated_text = original_text
+        try:
 
-    except Exception as e:
+            translated = GoogleTranslator(
+                source="auto",
+                target="en"
+            ).translate(original_text)
 
-        print("Translation Error:", e)
+            if translated:
+                translated_text = translated
 
-        translated_text = original_text
+        except Exception as e:
+
+            print("Translation Error:", e)
 
     print("Translated Text:", translated_text)
 
-    text = translated_text.lower()
-
-    cleaned_text = convert_number_words(text)
+    cleaned_text = convert_number_words(
+        translated_text.lower()
+    )
 
     return {
-        "language": result["language"],
+        "language": detected_language,
         "text": cleaned_text
     }

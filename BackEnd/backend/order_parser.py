@@ -5,8 +5,7 @@ def extract_order(text):
 
     orders = []
 
-    # Pattern 1:
-    # 5 rice bags
+    
     pattern1 = r'(\d+)\s+([a-zA-Z]+)'
 
     matches1 = re.findall(pattern1, text)
@@ -27,8 +26,7 @@ def extract_order(text):
                 "quantity": int(quantity)
             })
 
-    # Pattern 2:
-    # 5 bags of rice
+    
     pattern2 = r'(\d+)\s+\w+\s+of\s+([a-zA-Z]+)'
 
     matches2 = re.findall(pattern2, text)
