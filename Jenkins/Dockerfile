@@ -10,4 +10,7 @@ RUN apt-get update && apt-get install -y \
     git \
     docker.io
 
+# Add jenkins user to docker group
+RUN groupadd -f docker && usermod -aG docker jenkins
+
 USER jenkins
