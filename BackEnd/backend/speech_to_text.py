@@ -2,8 +2,7 @@ import whisper
 from word2number import w2n
 from deep_translator import GoogleTranslator
 
-model = whisper.load_model("small")
-
+model = whisper.load_model("tiny")
 
 def convert_number_words(text):
 

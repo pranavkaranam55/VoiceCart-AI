@@ -10,8 +10,7 @@ scipy==1.15.1
 openpyxl==3.1.5
 reportlab==4.5.1
 
-opencv-python==4.11.0.86
-
+opencv-python-headless==4.11.0.86
 deep-translator==1.11.4
 googletrans==4.0.2
 
@@ -20,3 +19,5 @@ word2number==1.1
 requests==2.32.3
 tqdm==4.67.1
 regex==2026.5.9
+torch
+openai-whisper
