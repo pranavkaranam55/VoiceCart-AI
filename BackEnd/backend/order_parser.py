@@ -1,64 +1,41 @@
 import re
 
-IGNORE_WORDS = {
-    "packet", "packets",
-    "bottle", "bottles",
-    "bag", "bags",
-    "piece", "pieces",
-    "box", "boxes",
-    "of"
-}
-
 
 def extract_order(text):
 
     orders = []
 
-    text = text.lower()
+    
+    pattern1 = r'(\d+)\s+([a-zA-Z]+)'
 
-   
-    pattern = r'(\d+)\s+([a-zA-Z]+(?:\s+[a-zA-Z]+){0,2})'
+    matches1 = re.findall(pattern1, text)
 
-    matches = re.findall(pattern, text)
+    for quantity, product in matches1:
 
-    for quantity, phrase in matches:
+        if product.lower() not in [
+            "bags",
+            "bag",
+            "packets",
+            "packet",
+            "bottles",
+            "bottle"
+        ]:
 
-        words = phrase.split()
+            orders.append({
+                "product": product.lower(),
+                "quantity": int(quantity)
+            })
 
-        filtered_words = [
-            word for word in words
-            if word not in IGNORE_WORDS
-        ]
+    
+    pattern2 = r'(\d+)\s+\w+\s+of\s+([a-zA-Z]+)'
 
-        if len(filtered_words) == 0:
-            continue
+    matches2 = re.findall(pattern2, text)
 
-        product = filtered_words[-1]
+    for quantity, product in matches2:
 
         orders.append({
-            "product": product,
+            "product": product.lower(),
             "quantity": int(quantity)
         })
 
-    merged_orders = {}
-
-    for item in orders:
-
-        product = item["product"]
-        quantity = item["quantity"]
-
-        if product in merged_orders:
-            merged_orders[product] += quantity
-        else:
-            merged_orders[product] = quantity
-
-    final_orders = []
-
-    for product, quantity in merged_orders.items():
-
-        final_orders.append({
-            "product": product,
-            "quantity": quantity
-        })
-
-    return final_orders
+    return orders
